@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import {PaperProvider} from "react-native-paper"
+import Auth from "./Components/Login"
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Todo from "./Components/Todo";
+const Stack = createNativeStackNavigator();
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <PaperProvider>
+     <NavigationContainer>
+      <Stack.Navigator>
+      <Stack.Screen name="LOGIN" component={Auth} />
+      <Stack.Screen name="TODO" component={Todo} />
+      </Stack.Navigator>
+      </NavigationContainer>
+      
+  </PaperProvider>
+  
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
