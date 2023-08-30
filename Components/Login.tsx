@@ -1,48 +1,39 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { useNavigation } from '@react-navigation/native';
 
-const Auth = () =>
-{
+const Auth = () => {
     const [authenticated, setAuthenticated] = useState(false);
     const nav = useNavigation();
 
-    const handleAuthentication = async () =>
-    {
-        try
-        {
+    const handleAuthentication = async () => {
+        try {
             const { success } = await LocalAuthentication.authenticateAsync({
                 promptMessage: 'Authenticate to access the Auth', // Prompt shown to the user
                 fallbackLabel: 'Use passcode', // Label for the fallback button
             });
 
-            if (success)
-            {
+            if (success) {
                 setAuthenticated(true);
-            } else
-            {
+            } else {
                 setAuthenticated(false);
             }
-        } catch (error)
-        {
+        } catch (error) {
             console.error('Authentication failed:', error);
         }
     };
 
     useEffect(() => {
-        if(authenticated){
-            nav.navigate('TODO')
+        if (authenticated) {
+            nav.navigate('Todo List');
         }
-
-    }, [authenticated])
-    
+    }, [authenticated]);
 
     return (
         <View>
-      <Button 
-      title="Log In"  onPress={handleAuthentication} />
-    </View>
+            <Button title="Log In" onPress={handleAuthentication} />
+        </View>
     );
 };
 
