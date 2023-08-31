@@ -10,7 +10,7 @@ const UpdateTodo = ({ route }) => {
     const nav = useNavigation();
     const { updateTodo } = useContext(TodoContext);
     const { index, data } = route.params;
-    console.log(index, data);
+    
     const onSave = (d) => {
         updateTodo({ ...data, ...d }, index);
         nav.goBack();

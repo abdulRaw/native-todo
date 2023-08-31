@@ -5,6 +5,7 @@ import TodoList from './TodoListView';
 import AddTodo from './AddTodo';
 import UpdateTodo from './UpdateTodo';
 import DeleteTodo from './DeleteTodo';
+import { NavigationContainer } from '@react-navigation/native';
 import Auth from './Login';
 
 export const TodoContext = createContext<TodoContextType | null>(null);
@@ -34,13 +35,15 @@ const TodoScreen = () => {
         <TodoContext.Provider
             value={{ todos: todoList, saveTodo, updateTodo, deleteTodo }}
         >
-            <Stack.Navigator initialRouteName="LOGIN">
-                <Stack.Screen name="LOGIN" component={Auth} />
-                <Stack.Screen name="Todo List" component={TodoList} />
-                <Stack.Screen name="Create" component={AddTodo} />
-                <Stack.Screen name="Update" component={UpdateTodo} />
-                <Stack.Screen name="Delete" component={DeleteTodo} />
-            </Stack.Navigator>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName="LOGIN">
+                    <Stack.Screen name="LOGIN" component={Auth} />
+                    <Stack.Screen name="Todo List" component={TodoList} />
+                    <Stack.Screen name="Create" component={AddTodo} />
+                    <Stack.Screen name="Update" component={UpdateTodo} />
+                    <Stack.Screen name="Delete" component={DeleteTodo} />
+                </Stack.Navigator>
+            </NavigationContainer>
         </TodoContext.Provider>
     );
 };

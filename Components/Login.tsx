@@ -25,6 +25,7 @@ const Auth = () => {
     };
 
     useEffect(() => {
+        console.log("hehehehehe")
         if (authenticated) {
             nav.navigate('Todo List');
         }
